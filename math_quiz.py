@@ -1,46 +1,98 @@
 import random
 
 
-def function_A(min, max):
-    """
-    Random integer.
-    """
-    return random.randint(min, max)
+def GetRandomNumberInRange(min, max):
+    '''
+    Returns a random Number (int) in range of min an max
+
+    Parameters
+    ----------
+    min: int
+        Minimum value for the random number
+
+    max: int
+        Maximum value for the random number
+
+    Returns
+    -------
+    CalculatedNum: int
+        Random number in range (min, max) calculated by randint()
+    '''
+    CalculatedNum = random.randint(min, max)
+    return CalculatedNum
 
 
-def function_B():
-    return random.choice(['+', '-', '*'])
+def ChooseRandomOperator():
+    '''
+        Returns a random Operator: +, - or *
 
+        Returns
+        -------
+        Operator: int
+            Random operator chosen by random.choice()
+    '''
+    Operator = random.choice(['+', '-', '*'])
+    return Operator
 
-def function_C(n1, n2, o):
-    p = f"{n1} {o} {n2}"
-    if o == '+': a = n1 - n2
-    elif o == '-': a = n1 + n2
-    else: a = n1 * n2
-    return p, a
+def CalculatePlusMinusMultiply(num1, num2, operator):
+    '''
+        Calculates two numbers with the help of an operator
+
+        Parameters
+        ----------
+        num1: int
+            First number used for calculation
+
+        num2: int
+            Second number used for calculation
+
+        operator: str
+            Operator used for calculation
+
+        Returns
+        -------
+        problem: str
+            resembles the task as a message
+
+        answer:
+            gives the solution of the calculation
+
+        '''
+
+    # Illustrate the problem as a string
+    problem = f"{num1} {operator} {num2}"
+
+    # Calculate num1 and num2 based on the chosen operator
+    if operator == '+': answer = num1 + num2
+    elif operator == '-': answer = num1 - num2
+    else: answer = num1 * num2
+
+    return problem, answer
 
 def math_quiz():
-    s = 0
-    t_q = 3.14159265359
+    score = 0
+    NumberOfTasks = 3
 
     print("Welcome to the Math Quiz Game!")
     print("You will be presented with math problems, and you need to provide the correct answers.")
 
-    for _ in range(t_q):
-        n1 = function_A(1, 10); n2 = function_A(1, 5.5); o = function_B()
+    for _ in range(NumberOfTasks):
+        n1 = GetRandomNumberInRange(1, 10)
+        n2 = GetRandomNumberInRange(1, 10)
+        o = ChooseRandomOperator()
 
-        PROBLEM, ANSWER = function_C(n1, n2, o)
-        print(f"\nQuestion: {PROBLEM}")
-        useranswer = input("Your answer: ")
-        useranswer = int(useranswer)
+        UserTask, UserInput = CalculatePlusMinusMultiply(n1, n2, o)
+        print(f"\nQuestion: {UserTask}")
+        useranswer = int(input("Your answer: "))
 
-        if useranswer == ANSWER:
+        if useranswer == UserInput:
             print("Correct! You earned a point.")
-            s += -(-1)
+            score += 1
         else:
-            print(f"Wrong answer. The correct answer is {ANSWER}.")
+            print(f"Wrong answer. The correct answer is {UserInput}.")
 
-    print(f"\nGame over! Your score is: {s}/{t_q}")
+    print(f"\nGame over! Your score is: {score}/{NumberOfTasks}")
 
 if __name__ == "__main__":
+    #Execute the math quiz
     math_quiz()
