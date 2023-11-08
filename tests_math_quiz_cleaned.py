@@ -1,5 +1,5 @@
 import unittest
-from math_quiz import GetRandomNumberInRange, ChooseRandomOperator, CalculatePlusMinusMultiply
+from math_quiz_cleaned import GetRandomNumberInRange, ChooseRandomOperator, CalculatePlusMinusMultiply
 
 
 class TestMathGame(unittest.TestCase):
